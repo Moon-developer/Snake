@@ -6,19 +6,19 @@
 #    By: mafernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/25 10:26:13 by mafernan          #+#    #+#              #
-#    Updated: 2018/07/25 15:31:28 by mafernan         ###   ########.fr        #
+#    Updated: 2018/07/26 15:53:26 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME="nibbler"
 CC= clang++ 
 FLAGS=-std=c++11 -Werror -Wextra -Wall
-TARGET= sfml.dylib
+TARGET= sfml.so
 SHAREDL= -fPIC -shared 
-INCL= -IGraphics_library/SFML-2.5.0-macOS-clang/include
-LINK= -LGraphics_library/SFML-2.5.0-macOS-clang/lib
+INCL= -IGraphics_library/SFML/include
+LINK= -LGraphics_library/SFML/lib
 LINKL= -lsfml-graphics -lsfml-system -lsfml-window
-FRAMEWORK_PATH= Graphics_library/SFML-2.5.0-macOS-clang/Frameworks
+FRAMEWORK_PATH= Graphics_library/SFML/Frameworks
 FRAMEWORKS= -framework sfml-graphics -framework sfml-window -framework sfml-system
 
 
@@ -29,13 +29,12 @@ SFML='SFML-clang.tar.gz'
 SFML_DIR='SFML-2.5.0-macOS-clang'
 DWNLD=sh -c '$$(curl -Lo $(SFML) https://www.sfml-dev.org/files/SFML-2.5.0-macOS-clang.tar.gz)'
 UNTAR=sh -c '$$(tar -xvzf $(SFML) && rm -rf $(SFML))'
-CR_MV=sh -c '$$(mv $(SFML_DIR) ./Graphics_library/.)'
+CR_MV=sh -c '$$(mv $(SFML_DIR) ./LIB1/SFML && cp -rf ./LIB1/SFML/extlibs/* ./LIB1/SFML/Frameworks/.)'
 
-all: check_libraries
-	@echo "SFML shared library:"
-	$(CC) -o $(TARGET) $(FLAGS) $(INCL) $(SHAREDL) ./srcs/interface.cpp $(LINK) $(LINKL) -F$(FRAMEWORK_PATH) $(FRAMEWORKS)
+all: SFML
+	echo "done!"
 
-check_libraries:
-	@mkdir -p "./Graphics_library"
+SFML:
 	@echo "Checking if SMFL is installed:"
-	@if [ -d "./Graphics_library/SFML-2.5.0-macOS-clang" ]; then echo "File sfml exists";else $(DWNLD) && $(UNTAR) && $(CR_MV);fi
+	@if [ -d "./LIB1/SFML" ]; then echo "File sfml exists";else $(DWNLD) && $(UNTAR) && $(CR_MV);fi
+	@cd ./LIB1 && $(MAKE) && cd ..
