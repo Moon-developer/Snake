@@ -6,7 +6,7 @@
 #    By: mafernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/25 10:26:13 by mafernan          #+#    #+#              #
-#    Updated: 2018/07/30 15:48:50 by mafernan         ###   ########.fr        #
+#    Updated: 2018/07/31 12:59:12 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,12 @@ CR_MV=sh -c '$$(mv $(SFML_DIR) ./LIB1/SFML && cp -rf ./LIB1/SFML/extlibs/* ./LIB
 
 SDL_DOWNLOAD=curl -Lo SDL2 http://www.libsdl.org/release/SDL2-2.0.8.dmg;hdiutil attach SDL2;cp -R /Volumes/SDL2/SDL2.framework LIB2/.;hdiutil detach /Volumes/SDL2;rm -rf SDL2
 
-all: SFML SDL
+GLFW_DOWNLOAD=curl -Lo glfw-3.2.1.zip https://github.com/glfw/glfw/releases/download/3.2.1/glfw-3.2.1.zip
+GLFW_SETUP=unzip -a glfw-3.2.1.zip && rm -rf glfw-3.2.1.zip && mv glfw-3.2.1 ./LIB3/glfw && cd ./LIB3/glfw && cmake . && make && make install
+
+all: SFML SDL GLFW
 	@echo "done!"
 	@clang++ -Werror -Wextra -Wall srcs/main.cpp
-	
 
 SFML:
 	@if [ -d "./bin" ];then echo "Bin exists";else mkdir bin;fi
@@ -48,5 +50,15 @@ SDL:
 	@if [ -d "./LIB2/SDL2.framework" ]; then echo "File SDL2 exists";else $(SDL_DOWNLOAD);fi
 	@cd ./LIB2 && $(MAKE)
 
+GLFW:
+	@if [ -d "./bin" ];then echo "Bin exists";else mkdir bin;fi
+	@echo "Checking if GLFW is installed:"
+	@if [ -d "./LIB3/glfw" ]; then echo "Folder GLFW exists";else $(GLFW_DOWNLOAD) && $(GLFW_SETUP);fi
+	@cd ./LIB3 && $(MAKE)
+
 clean:
-	@rm -rf LIB1/SFML LIB1/smfl.so LIB2/SDL2.framework a.out bin/*
+	@rm -rf LIB1/SFML LIB2/SDL2.framework LIB3/glfw a.out bin/*
+
+check_brew:
+	@if cat ~/.zshrc | grep -q "brew" ; then echo "Brew is installed" && stop;else echo "please install brew then run make again" && exit;fi
+	echo hello world
