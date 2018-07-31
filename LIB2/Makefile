@@ -6,7 +6,7 @@
 #    By: mafernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/30 09:02:14 by mafernan          #+#    #+#              #
-#    Updated: 2018/07/30 16:34:23 by mafernan         ###   ########.fr        #
+#    Updated: 2018/07/31 12:46:20 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,3 +23,4 @@ CMP_DLL = clang++ -shared -fPIC SDL2.framework/SDL2
 all:
 	@$(CMP_DLL) $(SRC_DLL) -o $(NAME) $(HEADER) -Wl,-rpath,$(PWD)/.
 	@mv $(NAME) ../bin/.
+	@echo "Created /bin/sdl.so"
