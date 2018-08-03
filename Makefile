@@ -6,7 +6,7 @@
 #    By: mafernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/25 10:26:13 by mafernan          #+#    #+#              #
-#    Updated: 2018/07/31 12:59:12 by mafernan         ###   ########.fr        #
+#    Updated: 2018/08/03 13:33:10 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,13 @@ SDL_DOWNLOAD=curl -Lo SDL2 http://www.libsdl.org/release/SDL2-2.0.8.dmg;hdiutil 
 GLFW_DOWNLOAD=curl -Lo glfw-3.2.1.zip https://github.com/glfw/glfw/releases/download/3.2.1/glfw-3.2.1.zip
 GLFW_SETUP=unzip -a glfw-3.2.1.zip && rm -rf glfw-3.2.1.zip && mv glfw-3.2.1 ./LIB3/glfw && cd ./LIB3/glfw && cmake . && make && make install
 
-all: SFML SDL GLFW
+all: checks SFML SDL GLFW
+	@clang++ -std=c++11 -Werror -Wextra -Wall srcs/main.cpp
 	@echo "done!"
-	@clang++ -Werror -Wextra -Wall srcs/main.cpp
+
+new: SFML SDL GLFW
+	@clang++ -std=c++11 -Werror -Wextra -Wall srcs/main.cpp
+	@echo "done!"
 
 SFML:
 	@if [ -d "./bin" ];then echo "Bin exists";else mkdir bin;fi
@@ -56,9 +60,14 @@ GLFW:
 	@if [ -d "./LIB3/glfw" ]; then echo "Folder GLFW exists";else $(GLFW_DOWNLOAD) && $(GLFW_SETUP);fi
 	@cd ./LIB3 && $(MAKE)
 
+re: clean all
+
 clean:
+	@rm -rf a.out bin/*
+
+fclean:
 	@rm -rf LIB1/SFML LIB2/SDL2.framework LIB3/glfw a.out bin/*
 
-check_brew:
-	@if cat ~/.zshrc | grep -q "brew" ; then echo "Brew is installed" && stop;else echo "please install brew then run make again" && exit;fi
-	echo hello world
+checks:
+	@read -p "Is brew installed? Type Y or n " ans ; if [ $$ans == "Y" ] ; then echo "continuing" ; else echo "Please close this terminal and install brew before running make again" && exec zsh; fi
+	@read -p "Is cmake installed? Type Y or n " ans ; if [ $$ans == "Y" ] ; then echo "continuing" ; else echo "Please close this terminal and install cmake before running make again" && exec zsh; fi
