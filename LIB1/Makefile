@@ -6,11 +6,11 @@
 #    By: mafernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/26 10:14:37 by mafernan          #+#    #+#              #
-#    Updated: 2018/07/31 12:47:00 by mafernan         ###   ########.fr        #
+#    Updated: 2018/08/03 14:11:32 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=clang++ -Werror -Wextra -Wall
+CC=clang++ -std=c++11 -Werror -Wextra -Wall
 
 OUT= -o sfml.so
 
@@ -22,7 +22,7 @@ FRAMEWORKS= -framework sfml-graphics -framework sfml-window -framework sfml-syst
 
 FRAMEWORK_PATH= -F SFML/Frameworks
 
-SRCS= interface.cpp
+SRCS= interface.cpp ../srcs/Food.cpp ../srcs/Snake.cpp
 
 INCL= -I includes -I SFML/include -I SFML/lib
 
