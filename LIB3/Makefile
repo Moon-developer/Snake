@@ -6,11 +6,11 @@
 #    By: mafernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/31 07:28:48 by mafernan          #+#    #+#              #
-#    Updated: 2018/07/31 12:45:41 by mafernan         ###   ########.fr        #
+#    Updated: 2018/08/03 12:42:41 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = clang++ -Werror -Wall -Wextra
+CC = clang++ -w -Werror -Wall -Wextra
 
 DYL_NAME = -o glfw.so
 
