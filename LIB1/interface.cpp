@@ -6,7 +6,7 @@
 /*   By: mafernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 13:10:42 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/03 14:11:51 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/06 17:04:21 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 #include "../srcs/Snake.hpp"
 #include "../srcs/Food.hpp"
 
-extern "C" void	test(struct settings set)
+extern "C" void	test(int width, int height)
 {
-	sf::RenderWindow	window(sf::VideoMode(set.width, set.height),"Nibbler: SFML");
+	sf::RenderWindow	window(sf::VideoMode(width, height),"Nibbler: SFML");
 
-	Snake	snake(set.width / 2, set.height - 20);
-	Food	food(set.height / 2, 1);
+	Snake	snake(width / 2, height - 20);
+	Food	food(height / 2, 1);
 
 	while (window.isOpen())
 	{
@@ -56,24 +56,3 @@ extern "C" void	test(struct settings set)
 		
 	}
 }
-
-// extern "C" void	test(struct settings set)
-// {
-// 	sf::RenderWindow window(sf::VideoMode(set.width, set.height), "SFML works!");
-// 	sf::CircleShape shape(100.f);
-// 	shape.setFillColor(sf::Color::Green);
-// 
-// 	while (window.isOpen())
-// 	{
-// 		sf::Event event;
-// 		while (window.pollEvent(event))
-// 		{
-// 			if (event.type == sf::Event::Closed)
-// 				window.close();
-// 		}
-// 
-// 		window.clear();
-// 		window.draw(shape);
-// 		window.display();
-// 	}
-// }
