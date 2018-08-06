@@ -6,7 +6,7 @@
 #    By: mafernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/25 10:26:13 by mafernan          #+#    #+#              #
-#    Updated: 2018/08/06 17:29:11 by mafernan         ###   ########.fr        #
+#    Updated: 2018/08/06 18:17:49 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,10 +63,10 @@ GLFW:
 re: clean all
 
 clean:
-	@rm -rf a.out bin/*
+	@rm -rf $(NAME) bin/*
 
 fclean:
-	@rm -rf LIB1/SFML LIB2/SDL2.framework LIB3/glfw a.out bin/*
+	@rm -rf LIB1/SFML LIB2/SDL2.framework LIB3/glfw $(NAME) bin/*
 
 checks:
 	@read -p "Is brew installed? Type Y or n " ans ; if [ $$ans == "Y" ] ; then echo "continuing" ; else echo "Please close this terminal and install brew before running make again" && exec zsh; fi
