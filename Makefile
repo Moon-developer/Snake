@@ -6,7 +6,7 @@
 #    By: mafernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/25 10:26:13 by mafernan          #+#    #+#              #
-#    Updated: 2018/08/06 16:36:02 by mafernan         ###   ########.fr        #
+#    Updated: 2018/08/06 17:29:11 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LINKL= -lsfml-graphics -lsfml-system -lsfml-window
 FRAMEWORK_PATH= Graphics_library/SFML/Frameworks
 FRAMEWORKS= -framework sfml-graphics -framework sfml-window -framework sfml-system
 
-SRCS=srcs/main.cpp srcs/Error.cpp
+SRCS=srcs/main.cpp srcs/Error.cpp srcs/Game.cpp
 
 SFML='SFML-clang.tar.gz'
 SFML_DIR='SFML-2.5.0-macOS-clang'
