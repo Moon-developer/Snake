@@ -6,7 +6,7 @@
 /*   By: mafernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 13:41:15 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/03 13:42:02 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/06 16:33:37 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define MAIN_HPP
 
 struct settings {
-	int		width = 200;
-	int		height = 200;
+	int		width;
+	int		height;
 };
 
 #endif
