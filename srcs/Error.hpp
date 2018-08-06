@@ -6,12 +6,15 @@
 /*   By: mafernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 11:01:27 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/06 13:36:21 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/06 16:50:52 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exception>
-#include <iostream>
+#ifndef ERROR_HPP
+# define ERROR_HPP
+
+# include <exception>
+# include <iostream>
 
 class	Error {
 	public:
@@ -42,3 +45,5 @@ class	Error {
 				virtual const char * what() const throw();
 		};
 };
+
+#endif
