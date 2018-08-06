@@ -6,13 +6,13 @@
 /*   By: mafernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 07:42:04 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/03 11:57:31 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/06 17:26:04 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <glfw3.h>
 
-extern "C" void	test(void)
+extern "C" void	test(int width, int height)
 {
 	GLFWwindow* window;
 
@@ -21,7 +21,7 @@ extern "C" void	test(void)
 		return ;
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+	window = glfwCreateWindow(width, height, "Hello World", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
