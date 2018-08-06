@@ -6,16 +6,13 @@
 /*   By: mafernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 13:41:15 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/06 16:33:37 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/06 18:08:38 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_HPP
 # define MAIN_HPP
 
-struct settings {
-	int		width;
-	int		height;
-};
+#include "Game.hpp"
 
 #endif
