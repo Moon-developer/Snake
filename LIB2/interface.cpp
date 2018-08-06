@@ -6,14 +6,14 @@
 /*   By: mafernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/30 09:08:00 by mafernan          #+#    #+#             */
-/*   Updated: 2018/07/30 14:31:32 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/06 17:25:43 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <SDL.h>
 #include <iostream>
 
-extern "C" void test(void)
+extern "C" void test(int width, int height)
 {
 	SDL_Window *window;                    // Declare a pointer
 	SDL_Renderer *ren;
@@ -25,8 +25,8 @@ extern "C" void test(void)
         "An SDL2 window",                  // window title
         SDL_WINDOWPOS_UNDEFINED,           // initial x position
         SDL_WINDOWPOS_UNDEFINED,           // initial y position
-        640,                               // width, in pixels
-        480,                               // height, in pixels
+        width,                               // width, in pixels
+        height,                               // height, in pixels
         0                  // flags - see below
     );
 
