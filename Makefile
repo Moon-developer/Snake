@@ -6,7 +6,7 @@
 #    By: mafernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/25 10:26:13 by mafernan          #+#    #+#              #
-#    Updated: 2018/08/03 13:33:10 by mafernan         ###   ########.fr        #
+#    Updated: 2018/08/06 16:36:02 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LINKL= -lsfml-graphics -lsfml-system -lsfml-window
 FRAMEWORK_PATH= Graphics_library/SFML/Frameworks
 FRAMEWORKS= -framework sfml-graphics -framework sfml-window -framework sfml-system
 
-SRCS=srcs/main.cpp
+SRCS=srcs/main.cpp srcs/Error.cpp
 
 SFML='SFML-clang.tar.gz'
 SFML_DIR='SFML-2.5.0-macOS-clang'
@@ -35,11 +35,11 @@ GLFW_DOWNLOAD=curl -Lo glfw-3.2.1.zip https://github.com/glfw/glfw/releases/down
 GLFW_SETUP=unzip -a glfw-3.2.1.zip && rm -rf glfw-3.2.1.zip && mv glfw-3.2.1 ./LIB3/glfw && cd ./LIB3/glfw && cmake . && make && make install
 
 all: checks SFML SDL GLFW
-	@clang++ -std=c++11 -Werror -Wextra -Wall srcs/main.cpp
+	@clang++ -std=c++11 -Werror -Wextra -Wall $(SRCS) -o $(NAME)
 	@echo "done!"
 
 new: SFML SDL GLFW
-	@clang++ -std=c++11 -Werror -Wextra -Wall srcs/main.cpp
+	@clang++ -std=c++11 -Werror -Wextra -Wall $(SRCS) -o $(NAME)
 	@echo "done!"
 
 SFML:
