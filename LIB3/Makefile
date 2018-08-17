@@ -6,7 +6,7 @@
 #    By: mafernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/31 07:28:48 by mafernan          #+#    #+#              #
-#    Updated: 2018/08/03 12:42:41 by mafernan         ###   ########.fr        #
+#    Updated: 2018/08/17 10:14:19 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = clang++ -w -Werror -Wall -Wextra
 
 DYL_NAME = -o glfw.so
 
-SRCS = interface.cpp
+SRCS = Display.cpp
 
 SHAREFLAGS = -shared -fPIC
 

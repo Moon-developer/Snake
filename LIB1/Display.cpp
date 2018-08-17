@@ -6,7 +6,7 @@
 /*   By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 13:08:26 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/17 09:21:40 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/17 15:33:41 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,52 +31,28 @@ void	Display::CloseWindow( void )
 // get the key inputs
 Keys	Display::getKey(void)
 {
-	if (this->_event.type == sf::Event::KeyPressed)
+	if (this->_event.type == sf::Event::KeyPressed) 
 	{
 		int	keyCode = this->_event.key.code;
-		
-		if (keyCode == sf::Keyboard::Up)
-		{
-			std::cout << "Up\n";
-			return Keys::UPA;
-		}
-		else if (keyCode == sf::Keyboard::Down)
-		{
-			std::cout << "Down\n";
-			return Keys::DOWNA;
-		}
-		else if (keyCode == sf::Keyboard::Left)
-		{
-			std::cout << "Left\n";				
-			return Keys::LEFTA;
-		}
-		else if (keyCode == sf::Keyboard::Right)
-		{
-			std::cout << "Right\n";				
-			return Keys::RIGHTA;
-		}
-		else if (keyCode == sf::Keyboard::Escape)
-		{
-			std::cout << "Escape\n";				
-			return Keys::ESC;
-		}
-		else if (keyCode == sf::Keyboard::F1)
-		{
-			std::cout << "F1\n";				
-			return Keys::F1;
-		}
-		else if (keyCode == sf::Keyboard::F2)
-		{
-			std::cout << "F2\n";				
-			return Keys::F2;
-		}
-		else if (keyCode == sf::Keyboard::F3)
-		{
-			std::cout << "F3\n";				
-			return Keys::F3;
-		}
-		else
+		switch (keyCode) {
+			case sf::Keyboard::Up:
+				return Keys::UPA;
+			case sf::Keyboard::Down:
+				return Keys::DOWNA;
+			case sf::Keyboard::Left:
+				return Keys::LEFTA;
+			case sf::Keyboard::Right:
+				return Keys::RIGHTA;
+			case sf::Keyboard::Escape:
+				return Keys::ESC;
+			case sf::Keyboard::F1:
+				return Keys::F1;
+			case sf::Keyboard::F2:
+				return Keys::F2;
+			case sf::Keyboard::F3:
+				return Keys::F3;
 			return Keys::UNKNOWN;
+		}
 	}
 	return Keys::UNKNOWN;
 }

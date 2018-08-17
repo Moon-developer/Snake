@@ -6,7 +6,7 @@
 /*   By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 16:49:38 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/17 09:32:12 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/17 15:35:05 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,15 +186,15 @@ void Game::runNibbler()
 	
 	try
 	{
-		Interface *func	= factory.createLibrary(library);
-		func->Init(_width, _height);
-
+		Interface *func	= factory.createLibrary(library, _width, _height);
 		// while snake is moving aka hasn't touched a wall
 		while (snake.Tick(this->food))
 		{
 			func->Render(this->food.getXPos(), this->food.getYPos(), this->snake.getSnake());
 			if (func->PollEvents() == false)
 				break;
+			if (func->getKey() == Keys::F1 || func->getKey() == Keys::F2)
+				func = factory.createLibrary(func->getKey(), _width, _height);
 			if (func->getKey() == Keys::ESC)
 				break;
 			if (func->getKey() == Keys::UPA)
@@ -206,7 +206,9 @@ void Game::runNibbler()
 			if (func->getKey() == Keys::RIGHTA)
 				snake.setDirection(Direction::RIGHT);
 		}
+		Debug::print("about to delete", true);
 		factory.deleteLibrary(func);
+		Debug::print("Deleted this function", true);
 	}
 	catch (std::exception & e)
 	{

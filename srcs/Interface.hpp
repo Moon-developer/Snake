@@ -6,7 +6,7 @@
 /*   By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 09:40:11 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/16 11:17:13 by ckatz            ###   ########.fr       */
+/*   Updated: 2018/08/17 14:17:49 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ enum Keys {
 class Interface
 {
 	public:
+		virtual ~Interface() {}
 		virtual void Init(int width, int height) = 0;
 		virtual Keys getKey( void ) = 0;
 		virtual void Render(int foodX, int foodY, std::vector<Block> snake) = 0;

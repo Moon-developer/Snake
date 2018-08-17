@@ -6,7 +6,7 @@
 #    By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/25 10:26:13 by mafernan          #+#    #+#              #
-#    Updated: 2018/08/16 15:01:12 by ckatz            ###   ########.fr        #
+#    Updated: 2018/08/17 10:12:47 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ GLFW_SETUP=unzip -a glfw-3.2.1.zip && rm -rf glfw-3.2.1.zip && mv glfw-3.2.1 ./L
 
 
 # ======= SET IT TO COMPILE ONLY WITH SFML / TEMPORARY ======= #
-all: SFML SDL
+all: SFML SDL GLFW
 	@clang++ -std=c++11 -Werror -Wextra -Wall $(SRCS) -o $(NAME)
 	@echo "done!"
 

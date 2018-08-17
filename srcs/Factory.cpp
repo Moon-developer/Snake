@@ -6,7 +6,7 @@
 /*   By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 10:54:27 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/17 09:18:32 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/17 15:23:23 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,61 +29,54 @@ void	dlerrorWrapper()
 
 // This will create and return the correct dynamic library
 // need to add a check to see if it's the same library or not
-Interface	*Factory::createLibrary(int libNum)
+Interface	*Factory::createLibrary(int libNum, int width, int height)
 {
-	void			*dl_handle;
-	Interface*		(*fn_pointer)( void );
-	std::string		library;
 
-	if (this->_first == 0)
+	if (libNum == this->_currentLib && this->_first == 1)
+		return (this->_dlGraphics);
+	else if (libNum != this->_currentLib && this->_first == 1)
+		deleteLibrary(this->_dlGraphics);
+	this->_currentLib = libNum;
+	if (libNum == 5)
 	{
-		if (libNum == 5)
-		{
-			library = "bin/sfml.so";
-			this->_currentLib = libNum;
-		}
-		else if (libNum == 6)
-		{
-			library = "bin/sdl.so";
-			this->_currentLib = libNum;
-		}
-		else if (libNum == 7)
-		{
-			library = "bin/glfw.so";
-			this->_currentLib = libNum;
-		}
 		this->_first = 1;
-	}
-	else if (libNum == this->_currentLib)
-		Debug::print("Already using that library", true);
-	else if (libNum == 5)
-	{
-		library = "bin/sfml.so";
+		this->_library = "bin/sfml.so";
 		this->_currentLib = libNum;
 	}
 	else if (libNum == 6)
 	{
-		library = "bin/sdl.so";
+		this->_first = 1;
+		this->_library = "bin/sdl.so";
 		this->_currentLib = libNum;
 	}
 	else if (libNum == 7)
 	{
-		library = "bin/glfw.so";
+		this->_first = 1;
+		this->_library = "bin/glfw.so";
 		this->_currentLib = libNum;
 	}
-	dl_handle = dlopen( library.c_str(), RTLD_LAZY | RTLD_LOCAL );
-	if ( !dl_handle )
+	this->_dl_handle = dlopen( this->_library.c_str(), RTLD_LAZY | RTLD_LOCAL );
+	if ( !this->_dl_handle )
 		dlerrorWrapper();
-	fn_pointer = (Interface*(*)(void)) dlsym(dl_handle, "CreateDisplay");
-	if (!fn_pointer)
+	this->_fn_pointer = (Interface*(*)(void)) dlsym(this->_dl_handle, "CreateDisplay");
+	if (!this->_fn_pointer)
 		dlerrorWrapper();
-	this->dlGraphics = fn_pointer();
-	return (this->dlGraphics);
+	this->_dlGraphics = this->_fn_pointer();
+	this->_dlGraphics->Init(width, height);
+	return (this->_dlGraphics);
 }
 
 void	Factory::deleteLibrary(Interface* & dlGraphics)
 {
-	(void)dlGraphics;
-	std::cout << "deleted" << std::endl;
-	//delete this->dlGraphics;
+	void	(*destory)(Interface *);
+
+	if ( !this->_dl_handle )
+		dlerrorWrapper();
+	destory = (void(*)(Interface *)) dlsym(this->_dl_handle, "DeleteDisplay");
+	if (!destory)
+		dlerrorWrapper();
+	destory(dlGraphics);
+	dlclose(this->_dl_handle);
+	this->_dl_handle = NULL;
+	this->_dlGraphics = NULL;
 }
