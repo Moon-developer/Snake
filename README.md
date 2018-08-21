@@ -57,5 +57,5 @@ to your local lan or prefered ip, recompile and run it again with the new settin
 To change it look in the LIB1/Display.hpp for "\_ip = "10.204.0.19"" and "\_port = 200".
 
 ## AUTHOR
-Chazni - logic \n
+Chazni - logic__ 
 Marco - graphics
