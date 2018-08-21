@@ -58,6 +58,26 @@ default value of "10.204.0.10" and port "2000" change this in the source code
 to your local lan or prefered ip, recompile and run it again with the new settings.  
 To change it look in the LIB1/Display.hpp for "\_ip = "10.204.0.19"" and "\_port = 200".  
 
+## SHOWCASE
+
+### Single player mode
+  
+This shows the snake game running and changing between 3 different graphics library on runtime.
+
+<img src="gif/single_player_mode.gif" />
+
+### Multiplayer mode
+  
+This shows the snake game running in multiplayer mode and changing between 3 different graphics library on runtime.
+
+<img src="gif/multiplayer_mode.gif" />
+
+### Local Multiplayer mode
+  
+This shows one snake game running as a host and the second connecting to the host on a local IP. 
+
+<img src="gif/local_lan_multiplayer.gif" />
+
 ## AUTHOR
 Chazni - logic  
 Marco - graphics
