@@ -6,7 +6,7 @@
 /*   By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 09:06:09 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/21 14:38:13 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/22 10:30:41 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ class Display : public Interface
 		int					_width;
 		int					_height;
 		int					_blockSize = 16;
-		const std::string	_ip = "10.204.0.19";
+		const std::string	_ip = "10.205.0.10";
 		const unsigned short _port = 2000;
 };
 

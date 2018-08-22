@@ -5,20 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/20 09:16:15 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/21 13:39:55 by mafernan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Display.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mafernan <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 07:38:11 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/20 09:09:34 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/22 10:44:32 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +22,19 @@ Display::Display(void)
 Display::~Display(void)
 {
 	endwin();
+}
+
+
+Display::Display(Display const & src) {
+	*this = src;	
+}
+
+Display & Display::operator=(Display const & src) {
+	if (this != &src)
+    {
+	*this = src;
+    }
+	return (*this);
 }
 
 void	Display::print(void)
@@ -245,46 +246,6 @@ void	Display::library(void)
 	clear();
 }
 
-void		Display::setIp(void)
-{
-	std::string		input;
-	int 			ch = getch();
-
-	clear();
-	mvprintw(1, 0, "=====================================================");
-	mvprintw(5, 5, "Please enter an IP address: eg 192.168.0.1");
-	mvprintw(15, 0, "=====================================================\nIP: ");
-	echo();
-    while ( ch != '\n' )
-    {
-        input.push_back(ch);
-        ch = getch();
-    }
-	_ip = input;
-	noecho();
-	clear();
-}
-
-void		Display::setPort(void)
-{
-	std::string		input;
-	int 			ch = getch();
-
-	clear();
-	mvprintw(1, 0, "=====================================================");
-	mvprintw(5, 5, "Please enter a Port number: eg 2000");
-	mvprintw(15, 0, "=====================================================\nPort: ");
-	echo();
-	while ( ch != '\n' )
-	{
-		input.push_back(ch);
-		ch = getch();
-	}
-	noecho();
-	_port = std::stoi(input);
-	clear();
-}
-
 void		Display::setOnline(void)
 {
 	const char *options[] = {"set IP", "set PORT", "back"};
@@ -299,9 +260,9 @@ void		Display::setOnline(void)
 		mvprintw(15, 0, "=====================================================");
 		set = barmenu(options, 7, 5, 3, this->_width, 3,3);
 		if (set == 0)
-			setIp();
+			break ;
 		if (set == 1)
-			setPort();
+			break ;
 	}
 	clear();
 }

@@ -6,7 +6,7 @@
 /*   By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 13:08:26 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/21 15:34:28 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/22 10:47:17 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ Display::Display(void)
 Display::~Display(void)
 {
 	glfwTerminate();
+}
+
+Display::Display(Display const & src) {
+	*this = src;	
+}
+
+Display & Display::operator=(Display const & src) {
+	if (this != &src)
+    {
+	*this = src;
+    }
+	return (*this);
 }
 
 // get player two keys

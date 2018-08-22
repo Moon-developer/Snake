@@ -6,7 +6,7 @@
 /*   By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 10:54:27 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/17 16:46:44 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/22 10:44:54 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 Factory::Factory() {}
 
 Factory::~Factory() {}
+
+
+Factory::Factory(Factory const & src) {
+	*this = src;	
+}
+
+Factory & Factory::operator=(Factory const & src) {
+	if (this != &src)
+    {
+	*this = src;
+    }
+	return (*this);
+}
 
 // This will create and return the correct dynamic library
 Interface	*Factory::createLibrary(int libNum, int width, int height)

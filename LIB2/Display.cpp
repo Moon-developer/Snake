@@ -6,7 +6,7 @@
 /*   By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 13:08:26 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/21 15:31:36 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/22 10:46:55 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ Display::~Display(void)
 	SDL_DestroyRenderer(this->_render);
 	SDL_DestroyWindow(this->_window);
 	SDL_Quit();
+}
+
+Display::Display(Display const & src) {
+	*this = src;	
+}
+
+Display & Display::operator=(Display const & src) {
+	if (this != &src)
+    {
+	*this = src;
+    }
+	return (*this);
 }
 
 // get player two keys

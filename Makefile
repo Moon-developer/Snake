@@ -6,7 +6,7 @@
 #    By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/25 10:26:13 by mafernan          #+#    #+#              #
-#    Updated: 2018/08/21 14:43:00 by mafernan         ###   ########.fr        #
+#    Updated: 2018/08/22 11:00:17 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,12 @@ CR_MV=sh -c '$$(mv $(SFML_DIR) ./LIB1/SFML && cp -rf ./LIB1/SFML/extlibs/* ./LIB
 # ======= SDL ======= #
 SDL_DOWNLOAD=curl -Lo SDL2 --progress-bar http://www.libsdl.org/release/SDL2-2.0.8.dmg;hdiutil attach SDL2;cp -R /Volumes/SDL2/SDL2.framework LIB2/.;hdiutil detach /Volumes/SDL2;rm -rf SDL2
 
-
 # ======= GLFW ======= #
 GLFW_DOWNLOAD=curl -Lo glfw-3.2.1.zip --progress-bar https://github.com/glfw/glfw/releases/download/3.2.1/glfw-3.2.1.zip
 GLFW_SETUP=unzip -a glfw-3.2.1.zip && rm -rf glfw-3.2.1.zip && mv glfw-3.2.1 ./LIB3/glfw && cd ./LIB3/glfw && cmake . && make && make install
+
+# ====== ASSETS ===== #
+ASSETS =sh -c '$$(git clone https://www.github.com/Moondog360/Snake/master/sprites)'
 
 
 # ======= SET IT TO COMPILE ONLY WITH SFML / TEMPORARY ======= #
@@ -63,6 +65,9 @@ GLFW:
 	@echo "Checking if GLFW is installed:"
 	@if [ -d "./LIB3/glfw" ]; then echo "Folder GLFW exists";else $(GLFW_DOWNLOAD) && $(GLFW_SETUP);fi
 	@cd ./LIB3 && $(MAKE)
+
+sprites:
+	$(ASSETS)
 
 re: clean all
 

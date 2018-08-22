@@ -6,7 +6,7 @@
 /*   By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 13:08:26 by mafernan          #+#    #+#             */
-/*   Updated: 2018/08/21 15:31:00 by mafernan         ###   ########.fr       */
+/*   Updated: 2018/08/22 10:46:30 by mafernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ Display::Display(void)
 		Body.setFillColor(sf::Color::Red);
 	// set blocking to fast from the start
 	this->_socket.setBlocking(false);
+}
+
+Display::Display(Display const & src) {
+	*this = src;	
+}
+
+Display & Display::operator=(Display const & src) {
+	if (this != &src)
+    {
+	*this = src;
+    }
+	return (*this);
 }
 
 // deconstructor
