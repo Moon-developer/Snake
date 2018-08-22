@@ -6,7 +6,7 @@
 #    By: ckatz <ckatz@student.wethinkcode.co.za>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/25 10:26:13 by mafernan          #+#    #+#              #
-#    Updated: 2018/08/22 11:00:17 by mafernan         ###   ########.fr        #
+#    Updated: 2018/08/22 11:13:28 by mafernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,11 @@ GLFW_DOWNLOAD=curl -Lo glfw-3.2.1.zip --progress-bar https://github.com/glfw/glf
 GLFW_SETUP=unzip -a glfw-3.2.1.zip && rm -rf glfw-3.2.1.zip && mv glfw-3.2.1 ./LIB3/glfw && cd ./LIB3/glfw && cmake . && make && make install
 
 # ====== ASSETS ===== #
-ASSETS =sh -c '$$(git clone https://www.github.com/Moondog360/Snake/master/sprites)'
+ASSETS =sh -c '$$(git clone https://www.github.com/Moondog360/Assets sprites)'
 
 
 # ======= SET IT TO COMPILE ONLY WITH SFML / TEMPORARY ======= #
-all: SFML SDL GLFW
+all: sprites SFML SDL GLFW
 	@clang++ -lncurses -std=c++11 -Werror -Wextra -Wall $(SRCS) -o $(NAME)
 	@echo "done!"
 
